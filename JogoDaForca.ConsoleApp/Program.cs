@@ -48,6 +48,13 @@ while (!jogadorAcertou)
         }
 
     }
+    // condição de vitória
+    String palavraAtual = new string(letrasCorretas); // transformo de char para String
+    if (palavraAtual == palavraSecreta)
+    {
+        Console.WriteLine("Parabéns, você acertou a palavra! ");
+        jogadorAcertou = true; // encerrar o while
+    }
 
 
     Console.ReadLine();
