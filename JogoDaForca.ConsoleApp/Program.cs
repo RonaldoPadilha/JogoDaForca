@@ -14,48 +14,60 @@ String palavraSecreta = "ABACATE";
 
 //2. O jogador poderá chutar a palavra secreta letra por letra, cada letra certa 
 //deverá ser apresentada, assim como as letras erradas.
-char[] letrasCorretas = new char[7];
+char[] letrasCorretas = new char[palavraSecreta.Length];
 
-for (int contadorLetras = 0; contadorLetras < 7; contadorLetras++)
+for (int contadorLetras = 0; contadorLetras < palavraSecreta.Length; contadorLetras++)
 {
     letrasCorretas[contadorLetras] = '_';
 }
 
 bool jogadorAcertou = false;
-
-while (!jogadorAcertou)
+int erros = 0;
+int limiteErros = 5;
+// Loop principal do jogo
+while (!jogadorAcertou && erros < limiteErros)
 {
-    //Console.Clear();
+    Console.Clear();
+    Console.WriteLine($"Erros: {erros}/{limiteErros}");
 
-    for (int contadorLetras = 0; contadorLetras < 7; contadorLetras++)
+    for (int contadorLetras = 0; contadorLetras < letrasCorretas.Length; contadorLetras++)
     {
-        Console.Write(letrasCorretas[contadorLetras]);
+        Console.Write(letrasCorretas[contadorLetras] + " ");
     }
 
-    Console.Write("\nDigite uma letra: ");
-    char chute = Convert.ToChar(Console.ReadLine());
+    Console.Write("\n\nDigite uma letra: ");
+    char chute = char.ToUpper(Convert.ToChar(Console.ReadLine())); // ToUpper garante que 'a' ou 'A' funcionem igual
+
+    bool letraEncontrada = false;
 
     //comparar a letra com cada letra da palavraSecreta
     //descobrir os indices corretos
     for (int contadorPalavrasSecreta = 0; contadorPalavrasSecreta < palavraSecreta.Length; contadorPalavrasSecreta++)
     {
-
-        char letraSecretaAtual = palavraSecreta[contadorPalavrasSecreta];
-
-        if (chute == letraSecretaAtual)
+        if (chute == palavraSecreta[contadorPalavrasSecreta])
         {
             letrasCorretas[contadorPalavrasSecreta] = chute;
+            letraEncontrada = true;
         }
-
     }
-    // condição de vitória
-    String palavraAtual = new string(letrasCorretas); // transformo de char para String
+    if (!letraEncontrada)
+    {
+        erros++;
+        Console.WriteLine("\nLetra incorreta! Pressione ENTER para continuar...");
+        Console.ReadLine();
+    }
+    String palavraAtual = new string(letrasCorretas);
     if (palavraAtual == palavraSecreta)
     {
-        Console.WriteLine("Parabéns, você acertou a palavra! ");
-        jogadorAcertou = true; // encerrar o while
+        jogadorAcertou = true;
     }
-
-
-    Console.ReadLine();
+    Console.Clear();
+    if (jogadorAcertou)
+    {
+        Console.WriteLine($"Parabéns! Você acertou a palavra: {palavraSecreta}");
+    }
+    else
+    {
+        Console.WriteLine($"Você atingiu {erros} erros. A palavra era: {palavraSecreta}");
+    }
 }
