@@ -21,8 +21,8 @@ string[] listaDePalavras = {
 };
 
 Random random = new Random();
-int indiceSorteado = random.Next(0, listaDePalavras.Length);
-string palavraSecreta = listaDePalavras[indiceSorteado];
+int palavraSorteada = random.Next(0, listaDePalavras.Length);
+string palavraSecreta = listaDePalavras[palavraSorteada];
 
 //2. O jogador poderá chutar a palavra secreta letra por letra, cada letra certa 
 //deverá ser apresentada, assim como as letras erradas.
@@ -40,7 +40,69 @@ int limiteErros = 5;
 while (!jogadorAcertou && erros < limiteErros)
 {
     Console.Clear();
-    Console.WriteLine($"Erros: {erros}/{limiteErros}");
+    Console.WriteLine("-------------------------");
+    Console.WriteLine("Jogo da forca");
+    Console.WriteLine("-------------------------");
+    Console.WriteLine($"Erros cometidos: {erros}/{limiteErros}");
+    Console.Write("Chutes: ");
+
+    Console.WriteLine("-------------------------");
+
+    if (erros == 0)
+    {
+        Console.WriteLine(@" ___________        ");
+        Console.WriteLine(@" |/        |        ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@"_|____              ");
+    }
+    else if (erros == 1)
+    {
+        Console.WriteLine(@" ___________        ");
+        Console.WriteLine(@" |/        |        ");
+        Console.WriteLine(@" |         o        ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@"_|____              ");
+    }
+    else if (erros == 2)
+    {
+        Console.WriteLine(@" ___________        ");
+        Console.WriteLine(@" |/        |        ");
+        Console.WriteLine(@" |         o        ");
+        Console.WriteLine(@" |         |        ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@"_|____              ");
+    }
+    else if (erros == 3)
+    {
+        Console.WriteLine(@" ___________        ");
+        Console.WriteLine(@" |/        |        ");
+        Console.WriteLine(@" |         o        ");
+        Console.WriteLine(@" |         |\       ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@"_|____              ");
+    }
+    else if (erros == 4)
+    {
+        Console.WriteLine(@" ___________        ");
+        Console.WriteLine(@" |/        |        ");
+        Console.WriteLine(@" |         o        ");
+        Console.WriteLine(@" |        /|\       ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@"_|____              ");
+    }
 
     for (int contadorLetras = 0; contadorLetras < letrasCorretas.Length; contadorLetras++)
     {
@@ -80,6 +142,20 @@ while (!jogadorAcertou && erros < limiteErros)
     }
     else
     {
-        Console.WriteLine($"Você atingiu {erros} erros. A palavra era: {palavraSecreta}");
+        Console.WriteLine("-------------------------");
+        Console.WriteLine(@" ___________        ");
+        Console.WriteLine(@" |/        |        ");
+        Console.WriteLine(@" |         o        ");
+        Console.WriteLine(@" |        /|\       ");
+        Console.WriteLine(@" |        / \       ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@" |                  ");
+        Console.WriteLine(@"_|____              ");
+        Console.WriteLine("-------------------------");
+        Console.WriteLine($"Limite de {erros} erros atingidos. ");
+        Console.WriteLine($"Você falhou misiravelmente! A palavra era: {palavraSecreta}");
     }
 }
+Console.WriteLine("-------------------------");
+Console.WriteLine("Digite ENTER para sair...");
+Console.ReadLine();
