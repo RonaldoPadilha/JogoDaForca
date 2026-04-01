@@ -11,6 +11,8 @@ acaba.
 
 //1. Ao iniciar o jogo, deve ser selecionada uma palavra aleatória à partir de uma lista.
 
+using System.Security.Cryptography;
+
 string[] listaDePalavras = {
     "ABACATE", "ABACAXI", "ACEROLA", "AÇAI", "ARAÇA",
     "BACABA", "GRAVIOLA", "BACURI", "GOIABA", "BANANA",
@@ -20,9 +22,8 @@ string[] listaDePalavras = {
     "TANGERINA", "UMBU", "UVA", "UVAIA"
 };
 
-Random random = new Random();
-int palavraSorteada = random.Next(0, listaDePalavras.Length);
-string palavraSecreta = listaDePalavras[palavraSorteada];
+int indiceAleatorio = RandomNumberGenerator.GetInt32(listaDePalavras.Length);
+string palavraSecreta = listaDePalavras[indiceAleatorio];
 
 //2. O jogador poderá chutar a palavra secreta letra por letra, cada letra certa 
 //deverá ser apresentada, assim como as letras erradas.
