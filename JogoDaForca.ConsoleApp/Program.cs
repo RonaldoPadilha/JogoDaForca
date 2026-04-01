@@ -22,141 +22,162 @@ string[] listaDePalavras = {
     "TANGERINA", "UMBU", "UVA", "UVAIA"
 };
 
-int indiceAleatorio = RandomNumberGenerator.GetInt32(listaDePalavras.Length);
-string palavraSecreta = listaDePalavras[indiceAleatorio];
+bool jogoDeveContinuar = true;
 
-//2. O jogador poderá chutar a palavra secreta letra por letra, cada letra certa 
-//deverá ser apresentada, assim como as letras erradas.
-char[] letrasCorretas = new char[palavraSecreta.Length];
-
-for (int contadorLetras = 0; contadorLetras < palavraSecreta.Length; contadorLetras++)
+while (jogoDeveContinuar == true)
 {
-    letrasCorretas[contadorLetras] = '_';
-}
+    int indiceAleatorio = RandomNumberGenerator.GetInt32(listaDePalavras.Length);
+    string palavraSecreta = listaDePalavras[indiceAleatorio];
 
-bool jogadorAcertou = false;
-int erros = 0;
-int limiteErros = 5;
-// Loop principal do jogo
-while (!jogadorAcertou && erros < limiteErros)
-{
-    Console.Clear();
-    Console.WriteLine("-------------------------");
-    Console.WriteLine("Jogo da forca");
-    Console.WriteLine("-------------------------");
-    Console.WriteLine($"Erros cometidos: {erros}/{limiteErros}");
-    Console.Write("Chutes: ");
 
-    Console.WriteLine("-------------------------");
+    char[] letrasCorretas = new char[palavraSecreta.Length];
 
-    if (erros == 0)
+    for (int contadorLetras = 0; contadorLetras < palavraSecreta.Length; contadorLetras++)
     {
-        Console.WriteLine(@" ___________        ");
-        Console.WriteLine(@" |/        |        ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@"_|____              ");
-    }
-    else if (erros == 1)
-    {
-        Console.WriteLine(@" ___________        ");
-        Console.WriteLine(@" |/        |        ");
-        Console.WriteLine(@" |         o        ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@"_|____              ");
-    }
-    else if (erros == 2)
-    {
-        Console.WriteLine(@" ___________        ");
-        Console.WriteLine(@" |/        |        ");
-        Console.WriteLine(@" |         o        ");
-        Console.WriteLine(@" |         |        ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@"_|____              ");
-    }
-    else if (erros == 3)
-    {
-        Console.WriteLine(@" ___________        ");
-        Console.WriteLine(@" |/        |        ");
-        Console.WriteLine(@" |         o        ");
-        Console.WriteLine(@" |         |\       ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@"_|____              ");
-    }
-    else if (erros == 4)
-    {
-        Console.WriteLine(@" ___________        ");
-        Console.WriteLine(@" |/        |        ");
-        Console.WriteLine(@" |         o        ");
-        Console.WriteLine(@" |        /|\       ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@"_|____              ");
+        letrasCorretas[contadorLetras] = '_';
     }
 
-    for (int contadorLetras = 0; contadorLetras < letrasCorretas.Length; contadorLetras++)
+    bool jogadorAcertou = false;
+    int erros = 0;
+    String letrasChutadas = "";
+    int limiteErros = 5;
+    // Loop principal do jogo
+    while (!jogadorAcertou && erros < limiteErros)
     {
-        Console.Write(letrasCorretas[contadorLetras] + " ");
-    }
+        Console.Clear();
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("Jogo da forca");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine($"Erros cometidos: {erros}/{limiteErros}");
+        Console.WriteLine($"Chutes: {letrasChutadas}");
 
-    Console.Write("\n\nDigite uma letra: ");
-    char chute = char.ToUpper(Convert.ToChar(Console.ReadLine())); // ToUpper garante que 'a' ou 'A' funcionem igual
+        Console.WriteLine("---------------------------------------------------");
 
-    bool letraEncontrada = false;
-
-    //comparar a letra com cada letra da palavraSecreta
-    //descobrir os indices corretos
-    for (int contadorPalavrasSecreta = 0; contadorPalavrasSecreta < palavraSecreta.Length; contadorPalavrasSecreta++)
-    {
-        if (chute == palavraSecreta[contadorPalavrasSecreta])
+        if (erros == 0)
         {
-            letrasCorretas[contadorPalavrasSecreta] = chute;
-            letraEncontrada = true;
+            Console.WriteLine(@" ___________        ");
+            Console.WriteLine(@" |/        |        ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@"_|____              ");
+        }
+        else if (erros == 1)
+        {
+            Console.WriteLine(@" ___________        ");
+            Console.WriteLine(@" |/        |        ");
+            Console.WriteLine(@" |         o        ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@"_|____              ");
+        }
+        else if (erros == 2)
+        {
+            Console.WriteLine(@" ___________        ");
+            Console.WriteLine(@" |/        |        ");
+            Console.WriteLine(@" |         o        ");
+            Console.WriteLine(@" |         |        ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@"_|____              ");
+        }
+        else if (erros == 3)
+        {
+            Console.WriteLine(@" ___________        ");
+            Console.WriteLine(@" |/        |        ");
+            Console.WriteLine(@" |         o        ");
+            Console.WriteLine(@" |         |\       ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@"_|____              ");
+        }
+        else if (erros == 4)
+        {
+            Console.WriteLine(@" ___________        ");
+            Console.WriteLine(@" |/        |        ");
+            Console.WriteLine(@" |         o        ");
+            Console.WriteLine(@" |        /|\       ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@"_|____              ");
+        }
+
+        for (int contadorLetras = 0; contadorLetras < letrasCorretas.Length; contadorLetras++)
+        {
+            Console.Write(letrasCorretas[contadorLetras] + " ");
+        }
+
+        Console.Write("\n\nDigite uma letra: ");
+        char chute = char.ToUpper(Convert.ToChar(Console.ReadLine())); // ToUpper garante que 'a' ou 'A' funcionem igual
+
+        if (letrasChutadas.Contains(chute))
+        {
+            Console.WriteLine($"\nVocê já tentou a letra {chute}! Tente outra.");
+            Console.ReadLine();
+            continue;
+        }
+
+        letrasChutadas += chute + "";
+
+        bool letraEncontrada = false;
+
+        //comparar a letra com cada letra da palavraSecreta
+        //descobrir os indices corretos
+        for (int contadorPalavrasSecreta = 0; contadorPalavrasSecreta < palavraSecreta.Length; contadorPalavrasSecreta++)
+        {
+            if (chute == palavraSecreta[contadorPalavrasSecreta])
+            {
+                letrasCorretas[contadorPalavrasSecreta] = chute;
+                letraEncontrada = true;
+            }
+        }
+        if (!letraEncontrada)
+        {
+            erros++;
+            Console.WriteLine("\nLetra incorreta! Pressione ENTER para continuar...");
+            Console.ReadLine();
+        }
+        String palavraAtual = new string(letrasCorretas);
+        if (palavraAtual == palavraSecreta)
+        {
+            jogadorAcertou = true;
+        }
+        Console.Clear();
+        if (jogadorAcertou)
+        {
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine($"Parabéns! Você acertou a palavra: {palavraSecreta}");
+        }
+        else
+        {
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine(@" ___________        ");
+            Console.WriteLine(@" |/        |        ");
+            Console.WriteLine(@" |         o        ");
+            Console.WriteLine(@" |        /|\       ");
+            Console.WriteLine(@" |        / \       ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@" |                  ");
+            Console.WriteLine(@"_|____              ");
+            Console.WriteLine("-------------------------");
+            Console.WriteLine($"Limite de {erros} erros atingidos. ");
+            Console.WriteLine($"Você falhou misiravelmente! A palavra era: {palavraSecreta}");
         }
     }
-    if (!letraEncontrada)
+    Console.WriteLine("---------------------------------------------------");
+    Console.WriteLine("Deseja jogar novamente ? (s /n): ");
+    string opcaoContinuar = Console.ReadLine();
+
+    if (opcaoContinuar != "S" && opcaoContinuar != "s")
     {
-        erros++;
-        Console.WriteLine("\nLetra incorreta! Pressione ENTER para continuar...");
-        Console.ReadLine();
-    }
-    String palavraAtual = new string(letrasCorretas);
-    if (palavraAtual == palavraSecreta)
-    {
-        jogadorAcertou = true;
-    }
-    Console.Clear();
-    if (jogadorAcertou)
-    {
-        Console.WriteLine($"Parabéns! Você acertou a palavra: {palavraSecreta}");
-    }
-    else
-    {
-        Console.WriteLine("-------------------------");
-        Console.WriteLine(@" ___________        ");
-        Console.WriteLine(@" |/        |        ");
-        Console.WriteLine(@" |         o        ");
-        Console.WriteLine(@" |        /|\       ");
-        Console.WriteLine(@" |        / \       ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@" |                  ");
-        Console.WriteLine(@"_|____              ");
-        Console.WriteLine("-------------------------");
-        Console.WriteLine($"Limite de {erros} erros atingidos. ");
-        Console.WriteLine($"Você falhou misiravelmente! A palavra era: {palavraSecreta}");
+        jogoDeveContinuar = false;
     }
 }
-Console.WriteLine("-------------------------");
-Console.WriteLine("Digite ENTER para sair...");
-Console.ReadLine();
+
